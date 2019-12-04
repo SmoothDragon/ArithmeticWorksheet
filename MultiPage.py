@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python2
 
 import sys, subprocess as sub
 
@@ -20,5 +20,3 @@ if __name__ == '__main__':
     cmd3 = '/usr/bin/pdftk Worksheet*.pdf cat output Worksheet.pdf'
     p3 = sub.Popen(['/bin/bash', '-c', cmd3], stdout=sub.PIPE)
     output.write(p3.stdout.read())
-    
-        

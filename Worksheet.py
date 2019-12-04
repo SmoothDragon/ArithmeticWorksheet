@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python2
 
 import random, sys
 
@@ -98,6 +98,31 @@ class division:
         s = r'$\begin{array}{l@{}r}'+'\n'
         s += r'& %d\\'%(self.a)+'\n'
         s += r'\div & %d\\'%(self.b)+'\n'
+        s += r'\hline'+'\n'
+        s += r'\end{array}$'+'\n'
+        return s
+
+class Beth:
+    def __init__(self,limit=10):
+        self.Title = 'Multiplication Facts'
+        self.x = 8
+        self.y = 10
+        self.limit = min(limit,1000)
+
+    def random(self):
+        self.a = random.randrange(self.limit)
+        self.b = random.randrange(6,10)
+        if random.randrange(2) == 0:
+            self.a,self.b = self.b,self.a
+
+    def __str__(self):
+        s = '%d * %d = __' %(self.a,self.b)
+        return s
+
+    def _latex_(self):
+        s = r'$\begin{array}{l@{}r}'+'\n'
+        s += r'& %d\\'%(self.a)+'\n'
+        s += r'\times & %d\\'%(self.b)+'\n'
         s += r'\hline'+'\n'
         s += r'\end{array}$'+'\n'
         return s
@@ -324,7 +349,6 @@ class ProblemPage:
         s += r'\end{document}'+'\n'
 
         return s
-                
 
 if __name__ == '__main__':
 
@@ -338,6 +362,8 @@ if __name__ == '__main__':
         eq = subtraction()
     elif v == 'mul':
         eq = multiplication()
+    elif v == 'beth':
+        eq = Beth()
     elif v == 'div':
         eq = division()
     elif v == 'axb':
@@ -365,5 +391,3 @@ if __name__ == '__main__':
     #eq = subtraction(100)
     page = ProblemPage()
     print page.random(eq)
-    
-    
